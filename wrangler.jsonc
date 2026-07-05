@@ -1,0 +1,26 @@
+{
+  // uhh.click — one Worker, edge redirects, D1 for everything.
+  "name": "uhh-click",
+  "main": "src/index.tsx",
+  "compatibility_date": "2025-06-01",
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "vars": {
+    "BASE_URL": "https://uhh.click",
+    "ALERT_FROM": "alerts@uhh.click"
+    // IP_PEPPER is a secret — set with `wrangler secret put IP_PEPPER`, never here.
+    // Local dev reads it from .dev.vars (gitignored).
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "uhh-click",
+      // Local dev keys off database_name; this is the real remote id from
+      // `wrangler d1 create uhh-click` (account vg / ENAM).
+      "database_id": "f09f7890-226b-4060-8cc8-c3334c49aae5",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Serve the Worker on the apex domain. Wrangler provisions the DNS record + cert.
+  "routes": [{ "pattern": "uhh.click", "custom_domain": true }]
+}

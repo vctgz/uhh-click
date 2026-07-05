@@ -1,0 +1,15 @@
+node_modules/
+.wrangler/
+.dev.vars
+.env
+.env.*
+dist/
+*.log
+.DS_Store
+
+# Claude Code local (machine-specific) settings — keep launch.json shared, ignore the rest
+.claude/settings.local.json
+
+# Claude Design import artifacts — keep the .dc.html reference, drop the runtime/junk
+design/support.js
+design/.thumbnail
